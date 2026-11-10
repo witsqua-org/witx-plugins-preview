@@ -2,19 +2,20 @@
 
 [简体中文](README.md) | English
 
-A plugin marketplace for [WitX Developer Preview](https://github.com/FoLAWy-py/WitX-Preview). A plugin groups Skills: guidance an agent loads when it fits a task. Plugins contain text only, run no code, and grant no permission. WitX still applies its policy, approval, and execution checks.
+A plugin marketplace for [WitX Developer Preview](https://github.com/witsqua-org/WitX-Preview). A plugin groups Skills: guidance an agent loads when it fits a task. Plugins contain text only, run no code, and grant no permission. WitX still applies its policy, approval, and execution checks.
 
 ## Install
 
-On the machine running the WitX Worker, explicitly add this Preview marketplace:
+WitX-Preview includes this marketplace by default. Install directly on the machine running the Worker:
 
 ```sh
-witx plugin marketplace add https://github.com/FoLAWy-py/witx-plugins-preview.git
-witx plugin install basics@witx-preview
+witx plugin install basics
 witx plugin list
 ```
 
-WitX displays the contents before asking you to confirm installation. This marketplace is named `witx-preview`, separate from the built-in `witx`. Both offer a plugin named `basics`, so an installation can keep only one of them at a time. Check the source before switching.
+WitX displays the contents before asking you to confirm installation. The built-in source is named `witx-preview`; `witx plugin install basics@witx-preview` selects it explicitly. There is no need to add the marketplace first.
+
+For other WitX builds that do not include the Preview source, first run `witx plugin marketplace add https://github.com/witsqua-org/witx-plugins-preview.git`, then install `basics@witx-preview`. If `basics` is already installed from the old `witx` source, remove it first, then review and confirm the Preview version. Only one plugin with the same name can be installed at a time.
 
 ```sh
 witx plugin update basics    # Updates from its recorded marketplace after showing the diff
@@ -81,7 +82,7 @@ From the WitX-Preview repository, run:
 uv run --locked witx plugin check /path/to/witx-plugins-preview
 ```
 
-CI checks against the public `FoLAWy-py/WitX-Preview` main branch, without a private repository deploy key. Plugins at local paths have their full contents checked. External repository entries have only their declaration format checked; fetch and validate those plugins separately. Before contributing, check versions, declarations, licenses, and privacy. Do not submit runtime data or real device or account information.
+CI checks against the public `witsqua-org/WitX-Preview` main branch, without a private repository deploy key. For the first paired release, push this repository before WitX-Preview, which verifies that its built-in source name matches this marketplace declaration. Plugins at local paths have their full contents checked. External repository entries have only their declaration format checked; fetch and validate those plugins separately. Before contributing, check versions, declarations, licenses, and privacy. Do not submit runtime data or real device or account information.
 
 ## License
 

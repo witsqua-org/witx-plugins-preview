@@ -2,19 +2,20 @@
 
 简体中文 | [English](README.en.md)
 
-[WitX Developer Preview](https://github.com/FoLAWy-py/WitX-Preview) 的 Plugin marketplace。Plugin 是一组 Skill：某类任务的操作方法，Agent 在合适时加载。Plugin 只含文字，不运行代码，也不授予权限；输入仍受 WitX 的策略、审批和执行检查约束。
+[WitX Developer Preview](https://github.com/witsqua-org/WitX-Preview) 的 Plugin marketplace。Plugin 是一组 Skill：某类任务的操作方法，Agent 在合适时加载。Plugin 只含文字，不运行代码，也不授予权限；输入仍受 WitX 的策略、审批和执行检查约束。
 
 ## 安装
 
-在运行 WitX Worker 的机器上，显式添加这个 Preview marketplace：
+WitX-Preview 已内置这个 marketplace。在运行 Worker 的机器上直接安装：
 
 ```sh
-witx plugin marketplace add https://github.com/FoLAWy-py/witx-plugins-preview.git
-witx plugin install basics@witx-preview
+witx plugin install basics
 witx plugin list
 ```
 
-安装前会展示全文，确认后才装。这里的 marketplace 名称是 `witx-preview`，与内置的 `witx` 分开。两边的 Plugin 都叫 `basics`，所以同一份安装中只能保留其中一份；切换前请查看来源。
+安装前会展示全文，确认后才装。内置源名称是 `witx-preview`，也可显式运行 `witx plugin install basics@witx-preview`，无需先添加 marketplace。
+
+如果使用的是没有内置 Preview 源的其他 WitX 构建，先运行 `witx plugin marketplace add https://github.com/witsqua-org/witx-plugins-preview.git`，再用 `basics@witx-preview` 安装。如果已从旧的 `witx` 源安装过 `basics`，先卸载旧的，再检查并确认 Preview 版本；同名 Plugin 只能保留一份。
 
 ```sh
 witx plugin update basics    # 从已安装版本记录的 marketplace 更新，先展示差异
@@ -81,7 +82,7 @@ marketplace 条目可以使用本仓库的相对路径，也可以指向另一�
 uv run --locked witx plugin check /path/to/witx-plugins-preview
 ```
 
-CI 使用公开的 `FoLAWy-py/WitX-Preview` main 检查，无需私有仓库 deploy key。本地路径中的 Plugin 会检查完整内容；外部仓库条目仅检查声明格式，引用的 Plugin 需另外取出并验证。提交前检查版本、声明、许可和隐私，不要提交运行数据或真实设备、账户信息。
+CI 使用公开的 `witsqua-org/WitX-Preview` main 检查，无需私有仓库 deploy key。首次配套发布时先推送本仓库，再推送 WitX-Preview；后者会验证内置源名称与这里的 marketplace 声明一致。本地路径中的 Plugin 会检查完整内容；外部仓库条目仅检查声明格式，引用的 Plugin 需另外取出并验证。提交前检查版本、声明、许可和隐私，不要提交运行数据或真实设备、账户信息。
 
 ## 许可证
 

@@ -19,10 +19,11 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          repository: FoLAWy-py/WitX-Preview
+          repository: witsqua-org/WitX-Preview
           ref: main
           path: witx
           persist-credentials: false
       - uses: astral-sh/setup-uv@v6
-      - working-directory: witx
+      - name: Check compatibility with WitX Preview
+        working-directory: witx
         run: uv run --locked --no-dev --package witx-cloud witx plugin check "$GITHUB_WORKSPACE/plugins"
